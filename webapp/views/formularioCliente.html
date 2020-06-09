@@ -18,7 +18,7 @@
     <!--<![endif]-->
 
         <!-- Mudar aqui -->
-        <script src="/js/clientes/adicionarClientes.js"></script>
+        <script src="/js/adicionarClientes.js"></script>
 
 </head>
 <body>
@@ -36,8 +36,10 @@
     
                 <ul class="pure-menu-list">
                     <li class="pure-menu-item"><a href="/api/auth/dashboard" class="pure-menu-link">Home</a></li>
-                    <li class="pure-menu-item"><a href="/addProducts" class="pure-menu-link">Cadastrar Clientes</a></li>
-                    <li class="pure-menu-item"><a href="/getProducts" class="pure-menu-link">Lista Clientes</a></li>
+                    <li class="pure-menu-item" style="color: white;">Cadastrar Clientes</li>
+                    <li class="pure-menu-item"><a href="/listarClientes" class="pure-menu-link">Lista Clientes</a></li>
+                    <li class="pure-menu-item"><a href="/listarClientePorCpf" class="pure-menu-link">Lista Clientes Por CPF</a></li>
+                    <li class="pure-menu-item"><a href="/gerenciarDados" class="pure-menu-link">Gerenciar Dados</a></li>
                     <li class="pure-menu-item"><a href="/api/auth/logout" class="pure-menu-link">Sair</a></li>    
                 </ul>
             </div>
@@ -49,57 +51,56 @@
             </div>
 
             <div class="content" style="margin-top: 5%">
-                    <div class="row justify-content-center">
-                        <div class="col-md-7">
-                        <form id="form-cliente">
-                            <div class="form-group">
-                                <label for="txtCpf">CPF</label>
-                                <input type="text" required class="form-control" id="txtCpf" />
-                            </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-7">
+                    <form id="form-cliente">
+                        <div class="form-group">
+                            <label for="txtCpf">CPF</label>
+                            <input type="text" required class="form-control" id="txtCpf" />
+                        </div>
 
-                            <div class="form-group">
-                                <label for="txtRg">RG</label>
-                                <input type="text" required class="form-control" id="txtRg" />
-                            </div>
+                        <div class="form-group">
+                            <label for="txtRg">RG</label>
+                            <input type="text" required class="form-control" id="txtRg" />
+                        </div>
 
-                            <div class="form-group">
-                                <label for="txtNome">Nome</label>
-                                <input type="text" required class="form-control" id="txtNome" />
-                            </div>
+                        <div class="form-group">
+                            <label for="txtNome">Nome</label>
+                            <input type="text" required class="form-control" id="txtNome" />
+                        </div>
 
-                            <div class="form-group">
-                                <label for="txtTelefone">Telefone</label>
-                                <input type="text" class="form-control" id="txtTelefone" />
-                            </div>
+                        <div class="form-group">
+                            <label for="txtTelefone">Telefone</label>
+                            <input type="text" class="form-control" id="txtTelefone" />
+                        </div>
 
-                            <div class="form-group">
-                                <label for="txtIdade">Idade</label>
-                                <input type="text" class="form-control" id="txtIdade" />
-                            </div>
+                        <div class="form-group">
+                            <label for="txtIdade">Idade</label>
+                            <input type="number" class="form-control" id="txtIdade" />
+                        </div>
 
-                            <div class="form-group">
-                                <label for="txtEndereco">Endereco</label>
-                                <input type="text" required class="form-control" id="txtEndereco" />
-                            </div>
+                        <div class="form-group">
+                            <label for="txtEndereco">Endereco</label>
+                            <input type="text" class="form-control" id="txtEndereco" />
+                        </div>
 
-                            <div class="form-group">
-                                <label for="txtRenda">Renda</label>
-                                <input type="text" required class="form-control" id="ttxtRendaxtCpf" />
-                            </div>
+                        <div class="form-group">
+                            <label for="txtRenda">Renda</label>
+                            <input type="text" class="form-control" id="txtRenda" />
+                        </div>
 
-                            <div class="form-group">
-                                <label for="txtEscolaridade">Escolaridade</label>
-                                <input type="text" required class="form-control" id="txtEscolaridade" />
-                            </div>
+                        <div class="form-group">
+                            <label for="txtEscolaridade">Escolaridade</label>
+                            <input type="text" class="form-control" id="txtEscolaridade" />
+                        </div>
 
-                            <button id="load" type="submit" class="btn btn-primary btn-block">Salvar</button>
+                        <button id="btnSalvar" type="submit" class="btn btn-primary btn-block">Salvar</button>
 
-                        </form>
-                    </div>
+                    </form>
                 </div>
-            </div>
-            
-            
+                </div>
+            </div>  
+
         <!-- End main -->
         </div>
 

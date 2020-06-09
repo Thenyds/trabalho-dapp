@@ -62,6 +62,13 @@ app.get("/formVeiculo", formVeiculo.renderAddVeiculo);
 
 app.get("/adicionarCliente", cliente.renderAdicionarCliente);
 app.post("/adicionarCliente", cliente.adicionarCliente)
+app.get("/listarClientes", cliente.renderListarClientes);
+app.get("/buscarClientes", cliente.buscarClientes);
+// app.get("/listarClientesPorCpf", cliente.renderListarClientesPorCpf);
+app.get("/gerenciarClientes", cliente.renderGerenciarDadosCliente);
+app.get("/buscarClientesPorCpf", cliente.buscarClientePorCpf);
+app.post("/atualizarDadosCliente", cliente.atualizarDadosCliente);
+// app.get("/buscarClienteGerenciar", cliente.buscarClienteGerenciar);
 
 const PORT = process.env.PORT || 3000;
 

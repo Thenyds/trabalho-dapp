@@ -15,8 +15,6 @@ function adicionarCliente() {
     // previne a página de ser recarregada
     event.preventDefault();
 
-    $('#load').attr('disabled', 'disabled');
-
     // resgata os dados do formulário
     let cpf = $("#txtCpf").val();
     let rg = $("#txtRg").val();
@@ -43,18 +41,18 @@ function adicionarCliente() {
         // verifica resposta do servidor
         if (!res.error) {
             console.log("*** Views -> js -> clientes.js -> adicionarCliente: ***", res.msg);            
-            limpa dados do formulário
-            $("#txtCpf").val("");
-            $("#txtRg").val("");
-            $("#txtNome").val("");
-            $("#txtTelefone").val("");
-            $("#txtIdade").val("");
-            $("#txtEndereco").val("");
-            $("#txtRenda").val("");
-            $("#txtEscolaridade").val("");
+            // limpa dados do formulário
+            // $("#txtCpf").val("");
+            // $("#txtRg").val("");
+            // $("#txtNome").val("");
+            // $("#txtTelefone").val("");
+            // $("#txtIdade").val("");
+            // $("#txtEndereco").val("");
+            // $("#txtRenda").val("");
+            // $("#txtEscolaridade").val("");
             
             // remove atributo disabled do botao
-            $('#load').attr('disabled', false);
+            // $('#load').attr('disabled', false);
 
             alert("Cliente cadastrado com sucesso");
             location.href = location.href;

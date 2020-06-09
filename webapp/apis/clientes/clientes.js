@@ -32,7 +32,8 @@ module.exports = {
     adicionarCliente: async function(req, res) {
 
         if (!req.session.username) {
-            res.redirect('/');
+            console.log("*** Não logado! -> ClienteApi -> adicionarCliente ***");
+            res.redirect('/api/auth');
             res.end();
         } else {
             console.log("*** ClienteApi -> adicionarCliente ***");
@@ -70,114 +71,140 @@ module.exports = {
             }
         }
     },
-
-
-    renderGetProducts: function(req, res) {
+    renderListarClientes: function(req, res) {
         // verifica se usuario esta logado
         if (!req.session.username) {
             res.redirect('/api/auth');
             res.end();
         } else {
-            res.render('listaProdutos.html');
+            res.render('listaClientes.html');
         }
     },
-    renderEditProduct: function(req, res) {
+    renderGerenciarDadosCliente: function(req, res) {
         // verifica se usuario esta logado
         if (!req.session.username) {
             res.redirect('/api/auth');
             res.end();
         } else {
-            res.render('editProduct.html');
+            res.render('gerenciarClientes.html');
         }
     },
-    getProducts: async function(req, res) {
-        console.log(contractAddress)
+    buscarClientes: async function(req, res) {
+        console.log(crmContractAddress)
         let userAddr = req.session.address;
-        console.log("*** Getting products ***", userAddr);
+        console.log("*** Buscar Clientes ***", userAddr);
 
-        await MyContract.methods.getProducts()
+        await CrmContract.methods.listarClientes()
             .call({ from: userAddr, gas: 3000000 })
-            .then(function (prod) {
+            .then(function (listaClientes) {
 
-                console.log("prod", prod);
-                if (prod === null) {
-                    return res.send({ error: false, msg: "no products yet"});
+                console.log("listaClientes", listaClientes);
+                if (listaClientes === null) {
+                    return res.send({ error: false, msg: "Não existe cliente cadastrado ainda."});
                 }
 
-                let produtos = [];
-                for (i = 0; i < prod['0'].length; i++) {
-                    produtos.push({ 'id': +prod['0'][i], 'produto': prod['1'][i], 'addr': prod['2'][i], 'preco': +prod['3'][i] });
+                let clientes = [];
+                for (i = 0; i < listaClientes['0'].length; i++) {
+                    clientes.push(
+                        {
+                            'cpf': listaClientes['0'][i],
+                            'rg': listaClientes['1'][i],
+                            'nome': listaClientes['2'][i],
+                            'telefone': listaClientes['3'][i],
+                            'idade': +listaClientes['4'][i],
+                            'endereco': listaClientes['5'][i],
+                            'renda': +listaClientes['6'][i],
+                            'escolaridade': listaClientes['7'][i]
+                        }
+                    );
                 }
 
-                console.log("produtos", produtos);
+                console.log("clientes", clientes);
 
-                res.send({ error: false, msg: "produtos resgatados com sucesso", produtos});
+                res.send({ error: false, msg: "Clientes retornados com sucesso", clientes});
                 return true;
             })
             .catch(error => {
-                console.log("*** productsApi -> getProducts ***error:", error);
+                console.log("*** clientesApi -> listarClientes ***error:", error);
                 res.send({ error: true, msg: error});
             })
         
     },
-    getProduct: async function(req, res){
 
-        console.log(contractAddress)
+    buscarClientePorCpf: async function(req, res){
+
+        console.log(crmContractAddress)
         let userAddr = req.session.address;
-        console.log("*** Getting product ***", userAddr);
+        console.log("*** Buscar cliente por CPF ***", userAddr);
         console.log(req);
 
-        await MyContract.methods.productInfo(req.query.id)
+        await CrmContract.methods.informacoesCliente(req.query.cpf)
             .call({ from: userAddr, gas: 3000000 })
-            .then(function (prod) {
+            .then(function (cliente) {
 
-                console.log("prod", prod);
-                if (prod === null) {
-                    return res.send({ error: false, msg: "no products yet"});
+                console.log("cliente", cliente);
+                if (cliente === null) {
+                    return res.send({ error: false, msg: "cliente não localizado"});
                 }
 
-                let produto = { 'id': + prod['0'], 'produto': prod['1'], 'addr': prod['2'], 'preco': +prod['3'] }
+                let clienteRetorno = 
+                    {
+                        'cpf': req.query.cpf,
+                        'rg': cliente['0'],
+                        'nome': cliente['1'],
+                        'telefone': cliente['2'],
+                        'idade': +cliente['3'],
+                        'endereco': cliente['4'],
+                        'renda': +cliente['5'],
+                        'escolaridade': cliente['6']
+                    }
 
-                console.log("produto", produto);
+                console.log("clienteRetorno", clienteRetorno);
 
-                res.send({ error: false, msg: "produtos resgatado com sucesso", produto});
+                res.send({ error: false, msg: "Dados do cliente resgatados com sucesso", clienteRetorno});
                 return true;
             })
             .catch(error => {
-                console.log("*** productsApi -> getProduct ***error:", error);
+                console.log("*** clientesApi -> buscarClientePorCpf ***error:", error);
                 res.send({ error: true, msg: error});
             })
     },
     
-    updateProduct: async (req, res) => {
+    atualizarDadosCliente: async (req, res) => {
         
         if (!req.session.username) {
             res.redirect('/');
             res.end();
         } else {
         
-            let productId = req.body.productId;
-            let newDesc   = req.body.newDesc;
-            let newPrice  = req.body.newPrice;
+            let cpfCliente = req.body.cpfCliente;
+            let newRg   = req.body.newRg;
+            let newNome  = req.body.newNome;
+            let newTelefone  = req.body.newTelefone;
+            let newIdade  = req.body.newIdade;
+            let newEndereco  = req.body.newEndereco;
+            let newRenda  = req.body.newRenda;
+            let newEscolaridade  = req.body.newEscolaridade;
+
             let userAddr  = req.session.address;
             let pass      = req.session.password;
 
-            console.log("apis -> products -> updateProduct: ", userAddr, productId, newDesc, newPrice);
+            console.log("apis -> clientes.js -> atualizarDadosCliente: ", userAddr, cpfCliente, newRg, newNome, newTelefone, newIdade, newEndereco, newRenda, newEscolaridade);
 
             try {
                 let accountUnlocked = await web3.eth.personal.unlockAccount(userAddr, pass, null)
                 console.log("Account unlocked?", accountUnlocked);
                 if (accountUnlocked) {
 
-                    await MyContract.methods.updateProduct(productId, newDesc, newPrice)
+                    await CrmContract.methods.atualizarDadosCliente(cpfCliente, newRg, newNome, newTelefone, newIdade, newEndereco, newRenda, newEscolaridade)
                         .send({ from: userAddr, gas: 3000000 })
                         .then(receipt => {
                             console.log(receipt);
-                            return res.send({ 'error': false, 'msg': 'Produto atualizado com sucesso.'}); 
+                            return res.send({ 'error': false, 'msg': 'Cliente atualizado com sucesso.'}); 
                         })
                         .catch((err) => {
                             console.log(err);
-                            return res.json({ 'error': true, msg: "erro ao se comunar com o contrato"});
+                            return res.send({ 'error': true, 'msg': "erro ao se comunicar com o contrato"});
                         })
                 }
             } catch (error) {
