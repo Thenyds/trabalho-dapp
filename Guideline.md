@@ -1,8 +1,8 @@
 ### Aplicação Daap CRM
 
-Esta aplicação foi construída para proporcionar o cadastramento e gerenciamento de clientes e seus dados.
-As tecnologias utilizadas foram: node.js, html, javascript, solidity e blockchain.
-A comunicação é feita através da rede blockchain, armazenando as informações em um contrato inteligente ethereum.
+Esta aplicação foi construída para proporcionar o cadastramento e gerenciamento de clientes e seus dados.<br>
+As tecnologias utilizadas foram: node.js, html, javascript, solidity e blockchain.<br>
+A comunicação é feita através da rede blockchain, armazenando as informações em um contrato inteligente ethereum.<br>
 
 As funcionalidades disponíveis da aplicação são:
 
