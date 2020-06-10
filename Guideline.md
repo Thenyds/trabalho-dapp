@@ -1,4 +1,8 @@
-### Aplicação Daap para gerenciamento de clientes e seus dados
+### Aplicação Daap CRM
+
+Esta aplicação foi construída para proporcionar o cadastramento e gerenciamento de clientes e seus dados.
+As tecnologias utilizadas foram: node.js, html, javascript, solidity e blockchain.
+A comunicação é feita através da rede blockchain, armazenando as informações em um contrato inteligente ethereum.
 
 As funcionalidades disponíveis da aplicação são:
 
@@ -6,5 +10,18 @@ As funcionalidades disponíveis da aplicação são:
     <li> Cadastramento de Cliente</li>
     <li> Listar todos os clientes cadastrados</li>
     <li> Pesquisar um cliente pelo CPF </li>
-     <li> Editar os dados de um cliente, através da lista de clientes ou da pesquisa de um cliente </li>
+    <li> Editar os dados de um cliente, através da lista de clientes ou da pesquisa de um cliente </li>
+</ol>
+
+Os atributos disponíveis para cadastramento/consulta são:
+
+<ol>
+    <li> CPF</li>
+    <li> RG</li>
+    <li> Nome </li>
+    <li> Telefone </li>
+    <li> Idade </li>
+    <li> Endereço </li>
+    <li> Renda </li>
+    <li> Escolaridade </li>
 </ol>
