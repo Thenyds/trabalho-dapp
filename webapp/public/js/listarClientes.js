@@ -35,7 +35,7 @@ function listarClientes() {
                 cols += `<td> ${cpf} </td>`;
                 cols += `<td> ${rg} </td>`;
                 cols += `<td class="truncade-td"> ${nome} </td>`;
-                cols += `<td> ${telefone} </td>`;
+                cols += `<td class="truncade-td-tel"> ${telefone} </td>`;
                 cols += `<td> ${idade} </td>`;
                 cols += `<td class="truncade-td"> ${endereco} </td>`;
                 cols += `<td> ${renda} </td>`;

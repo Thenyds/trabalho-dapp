@@ -14,6 +14,12 @@ body {
     text-overflow: ellipsis;
 }
 
+.truncade-td-tel {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 /*
 Add transition to containers so they can push in and out.
 */

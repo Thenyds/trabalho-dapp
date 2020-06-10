@@ -1,6 +1,5 @@
 window.addEventListener("load", function() {
 
-    
     // restaga formulário de produtos
     let formCliente = this.document.getElementById("form-cliente");
 
