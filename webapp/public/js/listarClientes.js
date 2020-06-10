@@ -34,15 +34,15 @@ function listarClientes() {
 
                 cols += `<td> ${cpf} </td>`;
                 cols += `<td> ${rg} </td>`;
-                cols += `<td> ${nome} </td>`;
+                cols += `<td class="truncade-td"> ${nome} </td>`;
                 cols += `<td> ${telefone} </td>`;
                 cols += `<td> ${idade} </td>`;
-                cols += `<td> ${endereco} </td>`;
+                cols += `<td class="truncade-td"> ${endereco} </td>`;
                 cols += `<td> ${renda} </td>`;
                 cols += `<td> ${escolaridade} </td>`;
                 cols += `<td align="center"> 
                     <span style="font-size: 1em; color: Dodgerblue; cursor: pointer; ">
-                        <a href="/gerenciarClientes?cpf=${clientes[i].cpf}"><i class="fas fa-edit"></i></a>
+                        <a href="/gerenciarClientes?cpf=${clientes[i].cpf}&origem=lista"><i class="fas fa-edit"></i></a>
                     </span>
                 </td>`
                 

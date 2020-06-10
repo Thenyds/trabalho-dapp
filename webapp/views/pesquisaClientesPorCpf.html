@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
 
-    <title>Lista de Clientes</title>
-    <script src="https://kit.fontawesome.com/23da8b8ca5.js"></script>
+    <title>Gerenciar Dados do Cliente</title>
+
     <!--[if lte IE 8]>
         <link rel="stylesheet" href="css/layouts/side-menu-old-ie.css">
     <![endif]-->
@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="/css/layouts/side-menu.css">
     <!--<![endif]-->
 
-    <script src="/js/listarClientes.js"></script>
+    <script src="/js/pesquisaClientesPorCpf.js"></script>
 </head>
 <body>
 
@@ -35,8 +35,8 @@
                 <ul class="pure-menu-list">
                     <li class="pure-menu-item"><a href="/api/auth/dashboard" class="pure-menu-link">Home</a></li>
                     <li class="pure-menu-item"><a href="/adicionarCliente" class="pure-menu-link">Cadastrar Clientes</a></li>
-                    <li class="pure-menu-item" style="color: white;">Listar Clientes</li>
-                    <li class="pure-menu-item"><a href="/pesquisaClientesPorCpf" class="pure-menu-link">Pesquisar Clientes Por CPF</a></li>
+                    <li class="pure-menu-item"><a href="/listarClientes" class="pure-menu-link">Listar Clientes</a></li>
+                    <li class="pure-menu-item" style="color: white;">Pesquisar Clientes por CPF</a></li>
                     <li class="pure-menu-item"><a href="/api/auth/logout" class="pure-menu-link">Sair</a></li>    
                 </ul>
             </div>
@@ -44,31 +44,23 @@
 
         <div id="main">
             <div class="header">
-                <h1> Lista de Clientes </h1>
+                <h1> Pesquisa cliente </h1>
             </div>
 
             <div class="content" style="margin-top: 5%">
-                <div class="row" style="margin-left: -190px !important;">
-                    <div class="col-md-10">
-                        <table id="clientes-table" class="table table-dark">
-                            <thead>
-                                <tr>
-                                    <th scope="col">CPF</th>
-                                    <th scope="col">RG</th>
-                                    <th scope="col">Nome</th>
-                                    <th scope="col">Telefone</th>
-                                    <th scope="col">Idade</th>
-                                    <th scope="col">Endereco</th>
-                                    <th scope="col">Renda</th>
-                                    <th scope="col">Escolaridade</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                
-                            </tbody>
-                        </table>
+                <div class="row justify-content-center">
+                    <div class="col-md-7">
+                        <form id="pesquisarCliente">
+                            <div class="form-group">
+                                <label for="cpfCliente">Informe o CPF do Cliente:</label>
+                                <input type="text" class="form-control" id="cpfCliente" placeholder="CPF do cliente" required>
+                            </div>
+
+                            <button id="btnPesquisar" type="submit" class="btn btn-primary btn-block">Pesquisar</button>
+                        </form>
                     </div>
                 </div>
+
             </div>
             
             

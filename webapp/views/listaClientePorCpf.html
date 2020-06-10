@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="/css/layouts/side-menu.css">
     <!--<![endif]-->
 
-    <script src="/js/gerenciarClientes.js"></script>
+    <script src="/js/listarClientePorCpf.js"></script>
 </head>
 <body>
 
@@ -36,57 +36,64 @@
                     <li class="pure-menu-item"><a href="/api/auth/dashboard" class="pure-menu-link">Home</a></li>
                     <li class="pure-menu-item"><a href="/adicionarCliente" class="pure-menu-link">Cadastrar Clientes</a></li>
                     <li class="pure-menu-item"><a href="/listarClientes" class="pure-menu-link">Listar Clientes</a></li>
-                    <li class="pure-menu-item"><a href="/pesquisaClientesPorCpf" class="pure-menu-link">Pesquisar Clientes por CPF</a></li>
-                    <li class="pure-menu-item" style="color: white;">Gerenciar Dados</li>
+                    <li class="pure-menu-item" style="color: white;">Pesquisar Clientes por CPF</li>
                     <li class="pure-menu-item"><a href="/api/auth/logout" class="pure-menu-link">Sair</a></li>    
                 </ul>
             </div>
         </div>
 
         <div id="main">
-            <div class="header" id="gerenciar">
-                <h1> Atualize os dados do cliente </h1>
+            <div class="header" id="pesquisar">
+                <h1> Pesquisa cliente </h1>
             </div>
 
             <div class="content" style="margin-top: 2%">
                 <div class="row justify-content-center">
                     <div class="col-md-7">
-                        <form id="gerenciarCliente">
+
+                        <form id="listarClientePorCpf">
                             <div class="form-group">
                                 <label for="cpf">CPF:</label>
                                 <input type="text" class="form-control" id="cpf" placeholder="CPF do cliente" disabled="true">
                             </div>
                             <div class="form-group">
                                 <label for="rg">RG:</label>
-                                <input type="text" class="form-control" id="rg" placeholder="Número do RG do cliente" required>
+                                <input type="text" class="form-control" id="rg" placeholder="Número do RG do cliente" disabled="true">
                             </div>
                             <div class="form-group">
                                 <label for="nome">Nome:</label>
-                                <input type="text" class="form-control" id="nome" placeholder="Nome do cliente" required>
+                                <input type="text" class="form-control" id="nome" placeholder="Nome do cliente" disabled="true">
                             </div>
                             <div class="form-group">
                                 <label for="telefone">Telefone:</label>
-                                <input type="text" class="form-control" id="telefone" placeholder="Número de telefone do cliente" required>
+                                <input type="text" class="form-control" id="telefone" placeholder="Número de telefone do cliente" disabled="true">
                             </div>
                             <div class="form-group">
                                 <label for="idade">Idade:</label>
-                                <input type="number" min="1" class="form-control" id="idade" placeholder="Idade do cliente" required>
+                                <input type="number" min="1" class="form-control" id="idade" placeholder="Idade do cliente" disabled="true">
                             </div>
                             <div class="form-group">
                                 <label for="endereco">Endereco:</label>
-                                <input type="text" class="form-control" id="endereco" placeholder="Endereco do cliente" required>
+                                <input type="text" class="form-control" id="endereco" placeholder="Endereco do cliente" disabled="true">
                             </div>
                             <div class="form-group">
                                 <label for="renda">Renda:</label>
-                                <input type="text" class="form-control" id="renda" placeholder="Renda do cliente" required>
+                                <input type="text" class="form-control" id="renda" placeholder="Renda do cliente" disabled="true">
                             </div>
                             <div class="form-group">
                                 <label for="escolaridade">Escolaridade:</label>
-                                <input type="text" class="form-control" id="escolaridade" placeholder="Escolaridade do cliente" required>
+                                <input type="text" class="form-control" id="escolaridade" placeholder="Escolaridade do cliente" disabled="true">
                             </div>
-        
-                            <button id="btnAtualizar" type="submit" class="btn btn-primary btn-block">Atualizar</button>
                         </form>
+                        <div class="col-md-24">
+                            <span class="col-md-12">
+                                <button id="btnNovaPesquisa" type="button" class="btn btn-primary" onclick="voltarPesquisarCliente()">Pesquisar outro cliente</button>
+                            </span>&nbsp&nbsp
+
+                            <span class="col-md-12">
+                                <button id="btnEdita" type="button" class="btn btn-success" onclick="irGerenciarCliente()">Editar Dados</button>
+                            </span>
+                        </div>
                     </div>
                 </div>
 

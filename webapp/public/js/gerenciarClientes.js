@@ -1,63 +1,30 @@
-let cfpCliente;
+let cfpCliente, pagOrigem;
 
 window.addEventListener('load', () => {
     console.log("*** página de gerenciamento de dados do cliente carregada ");
 
-    let form = "";
-    // let divHeaderPesquisar = document.getElementById("pesquisar");
-    // let divHeaderGerenciar = document.getElementById("gerenciar");
-    // let divPesquisar = document.getElementById("pesquisarCliente");
-    // let divGerenciar = document.getElementById("gerenciarCliente");
+    // restaga formulário de gerenciar clientes
+    form = document.getElementById("gerenciarCliente");
+
     let url_string = window.location.href;
     let url = new URL(url_string);
     cpfCliente = parseInt(url.searchParams.get("cpf"), 10);
+    pagOrigem = url.searchParams.get("origem");
     
-    if (cpfCliente === null || cpfCliente === undefined || isNaN(cpfCliente)) {
-        document.getElementById("gerenciar").hidden = "true";
-        document.getElementById("gerenciarCliente").hidden = "true";
+    // adiciona uma função para
+    // fazer o login quando o 
+    // formulário for submetido
+    form.addEventListener('submit', atualizarDados);
 
-        // restaga formulário de pesquisa de clientes
-        form = document.getElementById("pesquisarCliente");
-
-        // adiciona uma função para
-        // fazer o login quando o 
-        // formulário for submetido
-        form.addEventListener('submit', pesquisarCliente);
-    } else {
-        console.log("CPF Cliente: ", cpfCliente);
-
-        document.getElementById("pesquisar").hidden = "true";
-        document.getElementById("pesquisarCliente").hidden = "true";
-
-        // restaga formulário de gerenciar clientes
-        form = document.getElementById("gerenciarCliente");
-
-        // adiciona uma função para
-        // fazer o login quando o 
-        // formulário for submetido
-        form.addEventListener('submit', atualizarDados);
-
-        gerenciarClientes(cpfCliente);
-    }
-    
+    gerenciarClientes(cpfCliente);
 });
 
-function pesquisarCliente() {
-    document.getElementById("gerenciar").hidden = "false";
-    document.getElementById("gerenciarCliente").hidden = "false";
-    document.getElementById("pesquisar").hidden = "true";
-    document.getElementById("pesquisarCliente").hidden = "true";
-
-    let cpfInformado = $("#cpfCliente").val();
-    gerenciarClientes(cpfInformado);
-}
-
 function gerenciarClientes(cpf) {
-    console.log("*** Gerenciar Clientes ***");
 
-    // if (cpf === null || cpf === undefined || cpf === "") {
-    //     cpf = $("#cpfCliente").val();
-    // }
+    // previne a página de ser recarregada
+    event.preventDefault();
+
+    console.log("*** Gerenciar Clientes ***");
 
     $.get("/buscarClientesPorCpf", {cpf: cpf}, function(res) {
         
@@ -123,7 +90,12 @@ function atualizarDados() {
             $('#btnAtualizar').attr('disabled', false);
 
             alert("Os dados do cliente foram atualizados com sucesso");
-            window.location.href = "/gerenciarClientes";
+
+            if (pagOrigem === "lista") {
+                window.location.href = "/listarClientes";
+            } else {
+                window.location.href = "/pesquisaClientesPorCpf";
+            }
         } else {
             alert("Erro ao atualizar dados do cliente. Por favor, tente novamente mais tarde. " + res.msg);
         }

@@ -7,6 +7,13 @@ body {
     height: auto;
 }
 
+.truncade-td {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 /*
 Add transition to containers so they can push in and out.
 */

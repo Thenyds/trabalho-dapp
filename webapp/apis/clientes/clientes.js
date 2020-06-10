@@ -80,6 +80,27 @@ module.exports = {
             res.render('listaClientes.html');
         }
     },
+
+    renderPesquisaClientesPorCpf: function(req, res) {
+        // verifica se usuario esta logado
+        if (!req.session.username) {
+            res.redirect('/api/auth');
+            res.end();
+        } else {
+            res.render('pesquisaClientesPorCpf.html');
+        }
+    },
+
+    renderListarClientesPorCpf: function(req, res) {
+        // verifica se usuario esta logado
+        if (!req.session.username) {
+            res.redirect('/api/auth');
+            res.end();
+        } else {
+            res.render('listaClientePorCpf.html');
+        }
+    },
+    
     renderGerenciarDadosCliente: function(req, res) {
         // verifica se usuario esta logado
         if (!req.session.username) {
@@ -89,6 +110,7 @@ module.exports = {
             res.render('gerenciarClientes.html');
         }
     },
+    
     buscarClientes: async function(req, res) {
         console.log(crmContractAddress)
         let userAddr = req.session.address;
